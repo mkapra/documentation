@@ -1,0 +1,4 @@
+site_name: documentation
+nav:
+  - Home: index.md
+  - Administration: administration/administration.md
