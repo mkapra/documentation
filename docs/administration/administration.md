@@ -1,4 +1,4 @@
 # Administration
 
-## iptables
-[iptables](iptables.md)
+## [iptables](iptables.md)
+Konfiguration der Firewall unter Ubuntu.
