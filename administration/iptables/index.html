@@ -1,0 +1,464 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.7">
+    
+    
+      
+        <title>iptables - documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#iptables" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="documentation" class="md-header-nav__button md-logo" aria-label="documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            documentation
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              iptables
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="documentation" class="md-nav__button md-logo" aria-label="documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administration/" class="md-nav__link">
+        Administration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/programming/" class="md-nav__link">
+        Programmieren
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aktionen" class="md-nav__link">
+    Aktionen
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ketten" class="md-nav__link">
+    Ketten
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#befehlsubersicht" class="md-nav__link">
+    Befehlsübersicht
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iptables-save" class="md-nav__link">
+    iptables-save
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#einrichtung" class="md-nav__link">
+    Einrichtung
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="iptables">iptables</h1>
+<h2 id="aktionen">Aktionen</h2>
+<ul>
+<li><code>ACCEPT</code>: Paket annehmen</li>
+<li><code>DROP</code>: Paket verwerfen</li>
+<li><code>QUEUE</code>: Leitet an Queue Handler weiter</li>
+<li><code>RETURN</code>: Paket wird in der vorangegangenen Reihe zurück geschickt
+    Standardmäßig <code>ACCEPT</code></li>
+</ul>
+<h2 id="ketten">Ketten</h2>
+<p>Es gibt drei Standard Ketten:</p>
+<ul>
+<li><code>INPUT</code>: Behandelt Pakete für das System</li>
+<li><code>FORWARD</code>: Behandelt Pakete die weitergeleitet werden sollen</li>
+<li><code>OUTPUT</code>: Behandelt Pakete die vom eigenen System erzeugt werden</li>
+</ul>
+<p>Neben der Filtertabelle gibt es noch die <code>NAT</code>-Tabelle und die <code>MANGLE</code>-Tabelle
+(Paketmanipulation).</p>
+<h2 id="befehlsubersicht">Befehlsübersicht</h2>
+<p>Optionen für Ketten:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-N <code>name</code></td>
+<td>Kette mit Namen erstellen</td>
+</tr>
+<tr>
+<td>-X <code>name</code></td>
+<td>Leere Kette mit Namen löschen</td>
+</tr>
+<tr>
+<td>-L <code>name</code></td>
+<td>Alle Regeln einer Kette auflisten</td>
+</tr>
+<tr>
+<td>-F <code>name</code></td>
+<td>Alle Regeln in einer Kette löschen</td>
+</tr>
+<tr>
+<td>-P <code>name</code> <code>action</code></td>
+<td>Policy für Kette festlegen (z.b. <code>ACCEPT</code>)</td>
+</tr>
+<tr>
+<td>-A <code>name</code> <code>regel</code></td>
+<td>Regel an Kette anhängen</td>
+</tr>
+<tr>
+<td>-D <code>name</code> <code>regel</code></td>
+<td>Regel in Kette löschen</td>
+</tr>
+<tr>
+<td>-I <code>name</code> <code>position</code> <code>regel</code></td>
+<td>Regel an bestimmer Stelle in Kette einfügen</td>
+</tr>
+<tr>
+<td>-D <code>name</code> <code>position</code></td>
+<td>Regel an bestimmer Stelle in Kette löschen</td>
+</tr>
+</tbody>
+</table>
+<p>Optionen für Regeln:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-i <code>interface</code></td>
+<td>Eingehendes Interface</td>
+</tr>
+<tr>
+<td>-o <code>interface</code></td>
+<td>Ausgehendes Interface</td>
+</tr>
+<tr>
+<td>-j <code>action</code></td>
+<td>Aktion für Regel</td>
+</tr>
+<tr>
+<td>-p <code>tcp/udp</code></td>
+<td>Protokoll, das erlaubt werden soll</td>
+</tr>
+<tr>
+<td>--dport <code>port</code></td>
+<td>"Destination Port" -&gt; Zielport des Pakets</td>
+</tr>
+<tr>
+<td>--sport <code>port</code></td>
+<td>"Source Port" -&gt; Quellport des Pakets</td>
+</tr>
+<tr>
+<td>-m state --state <code>STATUS</code></td>
+<td>Status des Pakets mit prüfen (bestehende Verbindungen: <code>ESTABLISHED</code>, auf bestehende Verbindungen beziehen: <code>RELATED</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="iptables-save">iptables-save</h2>
+<p>Das erstellte Regelwerk ist flüchtig. Deswegen muss die aktuelle Konfiguration
+in einer <code>.rule</code>s Datei gespeichert werden:</p>
+<pre><code class="language-bash">sudo iptables-save &gt; /etc/iptables/iptables.rules
+</code></pre>
+<p>Nach dem Neustart des Systems:</p>
+<pre><code class="language-bash">sudo iptables-restore &lt; /etc/iptables/iptables.rules
+</code></pre>
+<h2 id="einrichtung">Einrichtung</h2>
+<p>Erste Schritte mit <code>iptables</code>:</p>
+<p>Bestehende Einträge löschen:</p>
+<pre><code class="language-bash">sudo iptables -F
+</code></pre>
+<p>Default Policies für Ketten festlegen:</p>
+<pre><code class="language-bash"># Alles soll blockiert werden
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT DROP
+sudo iptables -P FORWARD DROP
+</code></pre>
+<p>Traffic auf <code>localhost</code>-Interface erlauben:</p>
+<pre><code class="language-bash">sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A OUTPUT -o lo -j ACCEPT
+</code></pre>
+<p>Ausgehende HTTP(S)-Verbindungen zulassen:</p>
+<pre><code class="language-bash">sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+</code></pre>
+<p>Bereits bestehende Verbindungen erlauben:</p>
+<pre><code class="language-bash">sudo iptables -A INPUT -i &lt;interface&gt; -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -o &lt;interface&gt; -m state --state RELATED,ESTABLISHED -j ACCEPT
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.53cc9318.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9c9f54f.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
