@@ -2,3 +2,4 @@ site_name: documentation
 nav:
   - Home: index.md
   - Administration: administration/administration.md
+  - Programmieren: programming/programming.md
